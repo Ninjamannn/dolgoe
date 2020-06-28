@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 
+
 app = Flask(__name__)
 
 
@@ -14,5 +15,9 @@ def game():
     return render_template('index.html')
 
 
-if __name__ == '__main__':
+def create_app():
     app.run()
+
+
+if __name__ == '__main__':
+    create_app()
