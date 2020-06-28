@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from sqlalchemy import inspect, func
 
-from database.db_setup import Session
+from database.db_setup import DBSession
 
 
 class SessionManager:
@@ -12,7 +12,7 @@ class SessionManager:
     @contextmanager
     def session_scope(cls, obj=None, commit=True):
         """Provide a transactional scope around a series of operations."""
-        session = Session()
+        session = DBSession()
         object_session = None
         if obj is not None:
             object_session = session.object_session(obj)

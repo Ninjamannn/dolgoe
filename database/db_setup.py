@@ -6,10 +6,13 @@ from sqlalchemy.orm import sessionmaker
 DB_URL = 'sqlite:///dolgoe.db'
 
 Base = declarative_base()
+
 engine = create_engine(DB_URL, echo=True)
 
+Base.metadata.bind = engine
 
-Session = sessionmaker(bind=engine, expire_on_commit=False)
+DBSession = sessionmaker(bind=engine, expire_on_commit=False)
+
 
 
 def create_tables():
