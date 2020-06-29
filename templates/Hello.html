@@ -1,0 +1,24 @@
+<html>
+<style type="text/css">
+   button.new {font-size:30px;
+    background: -moz-linear-gradient(#d64154, #EBFFFF);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d61d1b), to(#EBFFFF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00BBD6', endColorstr='#EBFFFF');
+    padding: 50px 70px;
+    color: #333;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #666;
+   }
+  </style>
+<body>
+ <h1>Привет алко путники!</h1>
+ <h1>Я хочу сыграть с вами в игру</h1>
+ <p><img src="/static/letsgame.jpeg" width="800" height="400" alt="Милота"></p>
+ <a href="{{url_for('new_user')}}">
+   <button  class="new"> Добавить алко пользователя и рискнуть!</button>
+ </a>
+
+</body>
+</html>

@@ -7,12 +7,11 @@ DB_URL = 'sqlite:///dolgoe.db'
 
 Base = declarative_base()
 
-engine = create_engine(DB_URL, echo=True)
+engine = create_engine(DB_URL)
 
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine, expire_on_commit=False)
-
 
 
 def create_tables():
