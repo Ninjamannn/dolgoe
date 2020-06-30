@@ -2,3 +2,4 @@ flask
 bjoern
 SQLAlchemy
 alembic
+Flask-JSGlue
