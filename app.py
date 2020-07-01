@@ -14,7 +14,7 @@ def hello():
     return render_template("Hello.html")
 
 
-@app.route('/')
+# @app.route('/')
 @app.route('/user/new', methods=['GET', 'POST'])
 def new_user():
     if request.method == 'POST':

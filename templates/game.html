@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<canvas id="myCanvas" width="480" height="320"></canvas>
+<canvas id="myCanvas" width="680" height="520"></canvas>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 <script>
 var canvas = document.getElementById("myCanvas");
@@ -27,12 +27,12 @@ var paddleWidth = 75;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
-var brickRowCount = 5;
-var brickColumnCount = 5;
+var brickRowCount = 8;
+var brickColumnCount = 8;
 var brickWidth = 75;
 var brickHeight = 20;
-var brickPadding = 10;
-var brickOffsetTop = 30;
+var brickPadding = 6;
+var brickOffsetTop = 60;
 var brickOffsetLeft = 30;
 var score = 0;
 var lives = 3;
@@ -133,8 +133,24 @@ function collisionDetection() {
           b.status = 0;
           score++;
           if(score == brickRowCount*brickColumnCount) {
-            alert("YOU WIN, CONGRATS!");
-            document.location.reload();
+              $('canvas').remove();
+
+              var tag_s = document.createElement("p");
+              var text_s = document.createTextNode("SECRET:");
+              tag_s.appendChild(text_s);
+              var element_s = document.getElementById("secret");
+              element_s.appendChild(tag_s);
+
+              var tag = document.createElement("p");
+              var text = document.createTextNode("{{secret_by_user}}");
+              tag.appendChild(text);
+              var element = document.getElementById("secret");
+              element.appendChild(tag);
+
+              $.post(Flask.url_for('save_points', {'user': '{{ user }}', 'points': score}));
+              {#location.href = Flask.url_for('save_points', {'user': '{{ user }}', 'points': score});#}
+              alert("Ты такой молодец!");
+              {#document.location.reload();#}
           }
         }
       }
@@ -206,25 +222,9 @@ function draw() {
     else {
       lives--;
       if(!lives) {
-          $('canvas').remove();
-          var tag_s = document.createElement("p");
-          var text_s = document.createTextNode("SECRET:");
-          tag_s.appendChild(text_s);
-          var element_s = document.getElementById("secret");
-          element_s.appendChild(tag_s);
-
-          var tag = document.createElement("p");
-          var text = document.createTextNode("{{secret_by_user}}");
-          tag.appendChild(text);
-          var element = document.getElementById("secret");
-          element.appendChild(tag);
-          console.log("{{ user }}");
           $.post(Flask.url_for('save_points', {'user': '{{ user }}', 'points': score}));
-          {#location.href = Flask.url_for('save_points', {'user': '{{ user }}', 'points': score});#}
           alert("ТОБI ПIЗДА!,ПIЙ 50 ГРАММ!");
-
-          {#window.location.replace("/secret");#}
-          {#document.location.reload();#}
+          document.location.reload();
       }
       else {
         x = canvas.width/2;
@@ -238,13 +238,13 @@ function draw() {
 
   if(rightPressed && paddleX < canvas.width-paddleWidth) {
     paddleX += 3;
-    console.log('leftPressed');
-    console.log(paddleX)
+    {#console.log('leftPressed');#}
+    {#console.log(paddleX)#}
   }
   else if(leftPressed && paddleX > 0) {
     paddleX -= 3;
-    console.log('leftPressed');
-    console.log(paddleX)
+    {#console.log('leftPressed');#}
+    {#console.log(paddleX)#}
   }
 
   x += dx;
@@ -256,8 +256,6 @@ draw();
 </script>
 
 <div id="secret">
-{#<p id="p1">Tutorix</p>#}
-{#<p id="p2">Tutorialspoint</p>#}
 </div>
 
 
