@@ -7,7 +7,7 @@ DB_URL = 'sqlite:///dolgoe.db'
 
 Base = declarative_base()
 
-engine = create_engine(DB_URL)
+engine = create_engine(DB_URL, connect_args={"check_same_thread": False})
 
 Base.metadata.bind = engine
 

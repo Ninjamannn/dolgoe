@@ -7,7 +7,7 @@
     <style>
     	* { padding: 0; margin: 0; }
     	canvas { background: #eee; display: block; margin: 0 auto; }
-        #secret { padding: 300px; font-size: 600%; color: red; }
+        #secret { padding: 300px; font-size: 500%; color: red; }
     </style>
 </head>
 <body>
@@ -206,15 +206,19 @@ function draw() {
     else {
       lives--;
       if(!lives) {
-
-          console.log(lives);
-          console.log(canvas);
           $('canvas').remove();
+          var tag_s = document.createElement("p");
+          var text_s = document.createTextNode("SECRET:");
+          tag_s.appendChild(text_s);
+          var element_s = document.getElementById("secret");
+          element_s.appendChild(tag_s);
+
           var tag = document.createElement("p");
           var text = document.createTextNode("{{secret_by_user}}");
           tag.appendChild(text);
           var element = document.getElementById("secret");
           element.appendChild(tag);
+
           alert("ТОБI ПIЗДА!,ПIЙ 50 ГРАММ!");
           {#location.href = Flask.url_for('secret', {'user': '{{ user }}', "_anchor": "main" });#}
           {#$.get(Flask.url_for('secret', {'user': '{{ user }} ' }));#}
