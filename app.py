@@ -19,12 +19,12 @@ def new_user():
     if request.method == 'POST':
         exist_user = User.get_first(name=request.form['name'])
         if exist_user:
-            return render_template('game.html', user=request.form['name'], secret='secret!!!')
+            return render_template('game.html', user=request.form['name'], secret_by_user='secret!!!')
 
         if not exist_user:
             new_user = User(name=request.form['name'])
             User.save(new_user)
-            return render_template('game.html', user=request.form['name'], secret='secret!!!')
+            return render_template('game.html', user=request.form['name'], secret_by_user='secret!!!')
 
     else:
         return render_template("newUser.html")

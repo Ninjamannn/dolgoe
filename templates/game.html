@@ -7,6 +7,7 @@
     <style>
     	* { padding: 0; margin: 0; }
     	canvas { background: #eee; display: block; margin: 0 auto; }
+        #secret { padding: 300px; font-size: 600%; color: red; }
     </style>
 </head>
 <body>
@@ -210,17 +211,14 @@ function draw() {
           console.log(canvas);
           $('canvas').remove();
           var tag = document.createElement("p");
-          var text = document.createTextNode("Tutorix is the best e-learning platform");
+          var text = document.createTextNode("{{secret_by_user}}");
           tag.appendChild(text);
-          var element = document.getElementById("new");
+          var element = document.getElementById("secret");
           element.appendChild(tag);
           alert("ТОБI ПIЗДА!,ПIЙ 50 ГРАММ!");
           {#location.href = Flask.url_for('secret', {'user': '{{ user }}', "_anchor": "main" });#}
           {#$.get(Flask.url_for('secret', {'user': '{{ user }} ' }));#}
           {#window.location.replace("/secret");#}
-
-          {#$.get(Flask.url_for('secret'));#}
-
           {#document.location.reload();#}
       }
       else {
@@ -252,9 +250,9 @@ function draw() {
 draw();
 </script>
 
-<div id="new">
-<p id="p1">Tutorix</p>
-<p id="p2">Tutorialspoint</p>
+<div id="secret">
+{#<p id="p1">Tutorix</p>#}
+{#<p id="p2">Tutorialspoint</p>#}
 </div>
 
 
