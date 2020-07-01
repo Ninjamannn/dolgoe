@@ -1,19 +1,16 @@
 from flask import Flask, render_template, request
+from flask_jsglue import JSGlue
 
 from database.models.users import User
 
+
 app = Flask(__name__)
+jsglue = JSGlue(app)
 
 
 @app.route('/', methods=['GET'])
 def hello():
     return render_template("Hello.html")
-
-
-@app.route('/game')
-def game():
-    user = {'nickname': 'Dolgoe 2020'}
-    return render_template('game.html')
 
 
 @app.route('/')
@@ -22,13 +19,28 @@ def new_user():
     if request.method == 'POST':
         exist_user = User.get_first(name=request.form['name'])
         if exist_user:
-            return render_template('game.html')
+            return render_template('game.html', user=request.form['name'], secret='secret!!!')
+
         if not exist_user:
             new_user = User(name=request.form['name'])
             User.save(new_user)
-            return render_template('game.html')
+            return render_template('game.html', user=request.form['name'], secret='secret!!!')
+
     else:
         return render_template("newUser.html")
+
+
+@app.route('/game')
+def game():
+    user = {'nickname': 'Dolgoe 2020'}
+    return render_template('game.html')
+
+
+@app.route('/secret', methods=['POST', 'GET'])
+def secret():
+    print(request.args.get('user'))
+    print(request.host)
+    return render_template('show_secret.html', secret='secret!')
 
 
 def create_app():

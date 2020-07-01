@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {{ JSGlue.include() }}
     <meta charset="utf-8" />
     <title>Game</title>
     <style>
@@ -11,7 +12,7 @@
 <body>
 
 <canvas id="myCanvas" width="480" height="320"></canvas>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
 <script>
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
@@ -204,8 +205,23 @@ function draw() {
     else {
       lives--;
       if(!lives) {
-        alert("ТОБI ПIЗДА!,ПIЙ 50 ГРАММ!");
-        document.location.reload();
+
+          console.log(lives);
+          console.log(canvas);
+          $('canvas').remove();
+          var tag = document.createElement("p");
+          var text = document.createTextNode("Tutorix is the best e-learning platform");
+          tag.appendChild(text);
+          var element = document.getElementById("new");
+          element.appendChild(tag);
+          alert("ТОБI ПIЗДА!,ПIЙ 50 ГРАММ!");
+          {#location.href = Flask.url_for('secret', {'user': '{{ user }}', "_anchor": "main" });#}
+          {#$.get(Flask.url_for('secret', {'user': '{{ user }} ' }));#}
+          {#window.location.replace("/secret");#}
+
+          {#$.get(Flask.url_for('secret'));#}
+
+          {#document.location.reload();#}
       }
       else {
         x = canvas.width/2;
@@ -235,6 +251,12 @@ function draw() {
 
 draw();
 </script>
+
+<div id="new">
+<p id="p1">Tutorix</p>
+<p id="p2">Tutorialspoint</p>
+</div>
+
 
 </body>
 </html>
