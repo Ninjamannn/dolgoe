@@ -39,6 +39,13 @@ def save_points():
     return 'ok'
 
 
+@app.route('/point/all')
+def show_user_points():
+    users = User.get_all()
+    print(users)
+    return render_template("users_points.html", users=users)
+
+
 def create_app():
     app.run()
 

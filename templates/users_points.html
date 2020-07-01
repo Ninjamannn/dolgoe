@@ -1,0 +1,12 @@
+<html>
+<style>#lst { padding: 300px; font-size: 500%; color: red; }</style>
+<body>
+ <h1>Алкаш достижения:</h1>
+ <ol id="lst">
+   {% for user in users %}
+    <li> Алкаш: {{user.name}} Очки: {{user.point}} </li>
+    <br> <br>
+  {% endfor %}
+ </ol>
+</body>
+</html>
