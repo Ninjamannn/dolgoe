@@ -218,10 +218,11 @@ function draw() {
           tag.appendChild(text);
           var element = document.getElementById("secret");
           element.appendChild(tag);
-
+          console.log("{{ user }}");
+          $.post(Flask.url_for('save_points', {'user': '{{ user }}', 'points': score}));
+          {#location.href = Flask.url_for('save_points', {'user': '{{ user }}', 'points': score});#}
           alert("ТОБI ПIЗДА!,ПIЙ 50 ГРАММ!");
-          {#location.href = Flask.url_for('secret', {'user': '{{ user }}', "_anchor": "main" });#}
-          {#$.get(Flask.url_for('secret', {'user': '{{ user }} ' }));#}
+
           {#window.location.replace("/secret");#}
           {#document.location.reload();#}
       }

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_jsglue import JSGlue
+from werkzeug.wrappers import response
 
 from database.models.users import User
 
@@ -30,17 +31,12 @@ def new_user():
         return render_template("newUser.html")
 
 
-# @app.route('/game')
-# def game():
-#     user = {'nickname': 'Dolgoe 2020'}
-#     return render_template('game.html')
-#
-#
-# @app.route('/secret', methods=['POST', 'GET'])
-# def secret():
-#     print(request.args.get('user'))
-#     print(request.host)
-#     return render_template('show_secret.html', secret='secret!')
+@app.route('/point/save', methods=['GET', 'POST'])
+def save_points():
+    user = User.get(request.args.get('user'))
+    user.point += int(request.args.get('points'))
+    User.save(user)
+    return 'ok'
 
 
 def create_app():
