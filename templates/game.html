@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {{ JSGlue.include() }}
     <meta charset="utf-8" />
     <title>Game</title>
     <style>
@@ -147,8 +146,7 @@ function collisionDetection() {
               var element = document.getElementById("secret");
               element.appendChild(tag);
 
-              $.post(Flask.url_for('save_points', {'user': '{{ user }}', 'points': score}));
-              {#location.href = Flask.url_for('save_points', {'user': '{{ user }}', 'points': score});#}
+              $.post('/dolgoe/point/save', {'user': '{{ user }}', 'points': score});
               alert("Ты такой молодец!");
               {#document.location.reload();#}
           }
@@ -222,7 +220,7 @@ function draw() {
     else {
       lives--;
       if(!lives) {
-          $.post(Flask.url_for('save_points', {'user': '{{ user }}', 'points': score}));
+          $.post('/dolgoe/point/save', {user: '{{ user }}', points: score});
           alert("ТОБI ПIЗДА!,ПIЙ 50 ГРАММ!");
           document.location.reload();
       }

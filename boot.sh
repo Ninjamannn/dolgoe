@@ -7,3 +7,4 @@ export FLASK_DEBUG=0
 
 
 exec python bjoern_dolgoe.wsgi.py
+#exec python app.py
