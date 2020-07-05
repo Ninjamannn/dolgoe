@@ -38,9 +38,9 @@ def save_points():
 
 @app.route('/dolgoe/point/all')
 def show_user_points():
-    users = User.get_all()
+    users = User.get_all(ordering=User.point.desc())
     print(users)
-    return render_template("users_points.html", users=users)
+    return render_template('users_points.html', users=users)
 
 
 @app.route('/dolgoe/user')

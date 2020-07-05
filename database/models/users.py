@@ -20,5 +20,5 @@ class User(Base, SessionManager):
 
 
 def get_random_secret():
-    gps = ['1/4:55.45', '2/4:9405', '3/4: 26.77', '4/4:0728']
-    return random.choice(gps)
+    gps_place = ['1/4:55.45', '2/4:9405', '3/4: 26.77', '4/4:0728']
+    return random.choice(gps_place)
